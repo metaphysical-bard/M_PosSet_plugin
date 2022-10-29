@@ -1,0 +1,21 @@
+<?
+local d=require("M_PosSet_Module")
+local FileName="\\".."test.txt"
+local n=18
+local t={}
+for i=0,n-1 do
+local s=2*math.pi*i/n
+t[i*2+1]=math.cos(s)*500
+t[i*2+2]=math.sin(s)*500
+end
+
+d.write(FileName,n,t)
+?>
+
+<?
+local d=require("M_PosSet_Module")
+local FileName="\\".."test.txt"
+local t={}
+d.read(FileName,t)
+a=t
+?>
