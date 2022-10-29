@@ -1,4 +1,4 @@
-<?
+<?--書き込み例
 local d=require("M_PosSet_Module")
 local FileName="\\".."test.txt"
 local n=18
@@ -12,7 +12,7 @@ end
 d.write(FileName,n,t)
 ?>
 
-<?
+<?--読み込み例
 local d=require("M_PosSet_Module")
 local FileName="\\".."test.txt"
 local t={}

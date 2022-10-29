@@ -1,0 +1,4 @@
+LIBRARY M_PosSet_plugin
+
+EXPORTS
+	GetFilterTableList @1

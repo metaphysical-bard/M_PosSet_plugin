@@ -1,0 +1,71 @@
+--[[
+
+M_PosSet.anm
+	M_PosSet_pluginによって作成されたファイルを
+	グローバル変数で宣言します。
+	MPS[key]に、一次元配列で入ります。
+	keyは最大4桁の自然数です。
+	アンカー系スクリプトのお供にどうぞ。
+
+]]
+
+--track0:key,1,9999,1,1
+--track1:zoom,0,1000,100,0.01
+--track2:rot,-360,360,0,0.01
+--track3:reset,0,1,0,1
+--check0:三次元,0
+--dialog:FileName,local n="";
+
+local key=obj.track0
+local zoom=obj.track1*0.01
+local r=obj.track2*math.pi/180
+local reset=obj.track3
+n="\\"..n
+
+local function rot(x,y)
+local s,c=math.sin(r),math.cos(r)
+return x*c-y*s,x*s+y*c
+end
+
+local function f(x,y)
+x=x*zoom
+y=y*zoom
+return rot(x,y)
+end
+
+if(MPS==nil)then
+  MPS={}
+end
+
+local tfunc=require("M_PosSet_Module")
+
+if(obj.check0)then
+  local a={}
+  tfunc.read(n,a)
+  if(a~=nil)then
+    local b={}
+    for i=0,#a/2-1 do
+      b[i*3+1]=a[i*2+1]
+      b[i*3+2]=a[i*2+2]
+      b[i*3+3]=0
+    end
+    MPS[key]=b
+    for i=0,#MPS[key]/3-1 do
+      MPS[key][i*3+1],MPS[key][i*3+2]=f(MPS[key][i*3+1],MPS[key][i*3+2])
+    end
+  end
+else
+  local a={}
+  tfunc.read(n,a)
+  if(a~=nil)then
+    MPS[key]=a
+    for i=0,#MPS[key]/2-1 do
+      MPS[key][i*2+1],MPS[key][i*2+2]=f(MPS[key][i*2+1],MPS[key][i*2+2])
+    end
+  end
+end
+
+if(reset==1)then
+  MPS={}
+end
+
