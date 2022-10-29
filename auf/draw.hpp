@@ -736,6 +736,8 @@ public:
         int sxn, syn, fxn, fyn;
 
         if (Mpos_ihani == true) {//”ÍˆÍˆêÄˆÚ“®‚Ì‚Æ‚«
+            bx = Mpos.px - Mpos_dx;
+            by = Mpos.py - Mpos_dy;
             sxn = sx + bx;
             syn = sy + by;
             fxn = fx + bx;
@@ -754,7 +756,7 @@ public:
         int f = 1;//˜g‚Ì•
         sq(sxn + f, syn + f, fxn - f, fyn - f, 63, 76, 139, 0.4);
 
-        //˜g‚Ì•`‰æ(2
+        //˜g‚Ì•`‰æ
         sq(sxn,     syn,     fxn,    syn + f,63, 76, 139, 0.9);//ã
         sq(sxn,     fyn - f, fxn,    fyn,    63, 76, 139, 0.9);//‰º
         sq(sxn,     syn,     sxn + f,fyn,    63, 76, 139, 0.9);//¶
