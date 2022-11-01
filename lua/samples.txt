@@ -1,4 +1,16 @@
-<?--書き込み例
+<?--現在、マス目のウィンドウにある座標に円を描画
+local d=require("M_PosSet_Module")
+local a={}
+d.p2(a)
+
+obj.load("figure","円",0xffff00,30)
+for i=0,#a/2-1 do
+obj.draw(a[i*2+1],a[i*2+2])
+end
+?>
+
+
+<?--座標配列をファイルに書き込み
 local d=require("M_PosSet_Module")
 local FileName="\\".."test.txt"
 local n=18
@@ -12,10 +24,16 @@ end
 d.write(FileName,n,t)
 ?>
 
-<?--読み込み例
+
+<?--ファイルを読み込んで、座標の位置で円を描画
 local d=require("M_PosSet_Module")
 local FileName="\\".."test.txt"
 local t={}
 d.read(FileName,t)
-a=t
+
+obj.load("figure","円",0xffff00,30)
+for i=0,#t/2-1 do
+obj.draw(t[i*2+1],t[i*2+2])
+end
 ?>
+
